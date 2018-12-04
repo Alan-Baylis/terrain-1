@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (Input.GetButtonDown("Jump"))
             {
-               
+                anim.SetTrigger("Jump");
                 yVelocity = jumpSpeed;
             }
         }

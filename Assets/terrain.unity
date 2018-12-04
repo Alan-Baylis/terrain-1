@@ -3892,6 +3892,33 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 833aff789149f6a4abd553f3da3d17f6, type: 2}
+    - target: {fileID: 4510865553767292, guid: 49f0e61c93afa9a43a6c7b8398f9cd95, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.958
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510865553767292, guid: 49f0e61c93afa9a43a6c7b8398f9cd95, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114018652146263664, guid: 49f0e61c93afa9a43a6c7b8398f9cd95,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510865553767292, guid: 49f0e61c93afa9a43a6c7b8398f9cd95, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114018652146263664, guid: 49f0e61c93afa9a43a6c7b8398f9cd95,
+        type: 2}
+      propertyPath: jumpSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114018652146263664, guid: 49f0e61c93afa9a43a6c7b8398f9cd95,
+        type: 2}
+      propertyPath: gravity
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49f0e61c93afa9a43a6c7b8398f9cd95, type: 2}
   m_IsPrefabAsset: 0

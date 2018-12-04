@@ -13,17 +13,20 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float moveSpeed = 5.0f;
     public float h;
     public float v;
+    Animator anim;
 
 	// Use this for initialization
 	void Start () {
         charController = GetComponent<CharacterController>();
-		
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
+        anim.SetFloat("Speed", v);
+        anim.SetFloat("Direction", h);
 
         Vector3 direction = new Vector3(h, 0, v);
         Vector3 velocity = direction * moveSpeed;

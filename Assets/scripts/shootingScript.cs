@@ -10,11 +10,12 @@ public class shootingScript : MonoBehaviour
 
     [SerializeField]
     LayerMask layermask;
+    Animator anim;
 
     // Use this for initialization
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         layermask |= Physics.IgnoreRaycastLayer;
@@ -30,11 +31,13 @@ public class shootingScript : MonoBehaviour
             Cursor.visible = true;
         }
         if (Input.GetButtonDown("Fire1"))
-        {//Make a raycast with the line starting from center of camera
+        {
+            //Make a raycast with the line starting from center of camera
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Ray mouseRay = GetComponentInChildren<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;
+            anim.SetTrigger("Fire");
 
             //Send the raycast and if the raycast hit something, print out the name to console
             if (Physics.Raycast(mouseRay, out hitInfo,100, ~layermask)) {

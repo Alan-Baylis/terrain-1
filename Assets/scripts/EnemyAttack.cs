@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    Animator anim;
 
-    float nextTimeAttackIsAllowed = -1.0f;
+    void Start()
+    {
+        anim = GetComponentInParent<Animator>();
+    }
+
+    float nextTimeAttackIsAllowed = 1.0f;
 
     [SerializeField] float attackDelay = 1.0f;
 
@@ -16,8 +22,10 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.tag == "Player" && Time.time >= nextTimeAttackIsAllowed)
         {
+            HealthScript playerHealth = other.GetComponent<HealthScript>();
+            anim.SetTrigger("Attack");
+
             print("player");
-            playerHealth= other.GetComponent<HealthScript>();
             if (playerHealth)
             {
                 playerHealth.Damage(damageDealt);

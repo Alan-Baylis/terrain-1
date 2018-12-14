@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    Animator anim;
 
     [SerializeField] int maximumHealth = 100;
     int currentHealth = 0;
@@ -20,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maximumHealth;
+        anim = GetComponent<Animator>();
     }
 
     public bool isDead { get{ return currentHealth <= 0; } }
@@ -45,6 +47,18 @@ public class EnemyHealth : MonoBehaviour
                 UIScript.UpdateScore(50);
             }
             Destroy(gameObject);
+
+            if (anim)
+            {
+                anim.SetBool("Dead", true);
+            }
+            UIScript.UpdateScore(50);
+            Destroy(GetComponent<EnemyNavMovement>());
+            Destroy(GetComponent<UnityEngine.AI.NavMeshAgent>());
+            Destroy(GetComponent<CharacterController>());
+            Destroy(GetComponentInChildren<EnemyAttack>());
+
+            GameManager.amountKilled++;
         }
     }
     void Update()

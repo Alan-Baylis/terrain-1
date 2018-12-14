@@ -14,9 +14,12 @@ public class HealthScript : MonoBehaviour
     [SerializeField]
     private Stat energy;
 
+    Animator anim;
+
     void Start()
     {
         currentHealth = maximumHealth;
+        anim = GetComponent<Animator>();
     }
 
     private void Awake()
@@ -40,10 +43,11 @@ public class HealthScript : MonoBehaviour
     public void Damage(int damageValue)
     {
         currentHealth -= damageValue;
+        anim.SetTrigger("Flinch");
 
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 

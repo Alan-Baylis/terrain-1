@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    internal static int amountKilled;
     public BarScript playerHealth;
     public Text score;
     public Text playerHealthTxt;

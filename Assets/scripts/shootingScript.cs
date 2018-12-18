@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class shootingScript : MonoBehaviour
 {
+    [SerializeField] GameObject bloodHit;
 
     [SerializeField]
     int damageDealt = 20;
@@ -18,7 +19,7 @@ public class shootingScript : MonoBehaviour
         anim = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        layermask |= Physics.IgnoreRaycastLayer;
+        //layermask |= Physics.IgnoreRaycastLayer;
         layermask = ~layermask;
     }
 
@@ -38,16 +39,21 @@ public class shootingScript : MonoBehaviour
             Ray mouseRay = GetComponentInChildren<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;
             anim.SetTrigger("Fire");
+            GetComponentInChildren<ParticleSystem>().Play();
 
             //Send the raycast and if the raycast hit something, print out the name to console
             if (Physics.Raycast(mouseRay, out hitInfo,100, ~layermask)) {
                 print(hitInfo.transform);
-                HealthScript enemyHealth = hitInfo.transform.GetComponent<HealthScript>(); 
+                EnemyHealth enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>(); 
                 Debug.DrawLine(transform.position, hitInfo.point, Color.red, 5.0f);
-                HealthScript EnemyHealth = hitInfo.transform.GetComponent<HealthScript>();
+                EnemyHealth EnemyHealth = hitInfo.transform.GetComponent<EnemyHealth>();
+
                 if (enemyHealth != null)
                 {
                     enemyHealth.Damage(damageDealt);
+                    Vector3 bloodHitPos = hitInfo.point;
+                    Quaternion bloodHitRot = Quaternion.FromToRotation(Vector3.forward, hitInfo.normal);
+                    Instantiate(bloodHit, bloodHitPos, bloodHitRot);
                 }
             }
         }

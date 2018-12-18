@@ -15,7 +15,7 @@ public class healPickup : MonoBehaviour
         print("pick up " + collider.gameObject.tag);
         if (collider.CompareTag("Player"))
         {
-            HealthScript health = collider.gameObject.GetComponent<HealthScript>();
+            EnemyHealth health = collider.gameObject.GetComponent<EnemyHealth>();
             if (health != null)
             {
                 health.Damage(-50);

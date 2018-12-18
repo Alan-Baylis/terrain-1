@@ -16,7 +16,7 @@ public class EnemyNavAnimations : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print(agent.velocity.magnitude);
+       // print(agent.velocity.magnitude);
         if (agent)
         {
             anim.SetFloat("Speed", agent.velocity.magnitude);

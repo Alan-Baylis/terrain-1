@@ -6,6 +6,8 @@ public class EnemyAttack : MonoBehaviour
 {
     Animator anim;
 
+    [SerializeField] GameObject bloodhit;
+
     void Start()
     {
         anim = GetComponentInParent<Animator>();
@@ -24,6 +26,12 @@ public class EnemyAttack : MonoBehaviour
         {
             EnemyHealth playerHealth = other.GetComponent<EnemyHealth>();
             anim.SetTrigger("Attack");
+            playerHealth.Damage(damageDealt);
+
+            Vector3 hitDirection = (transform.root.position - other.transform.position).normalized;
+            Vector3 hitEffectPos = other.transform.position + (hitDirection * 0.01f) + (Vector3.up * 1.5f);
+            Quaternion hitEffectRoatation = Quaternion.FromToRotation(Vector3.forward, hitDirection);
+            Instantiate(bloodhit, hitEffectPos, hitEffectRoatation);
 
             print("player");
             if (playerHealth)

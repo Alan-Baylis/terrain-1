@@ -5,6 +5,8 @@ using UnityEngine;
 public class shootingScript : MonoBehaviour
 {
     [SerializeField] GameObject bloodHit;
+    AudioSource audioSrc;
+    [SerializeField] AudioClip shootclip;
 
     [SerializeField]
     int damageDealt = 20;
@@ -17,6 +19,7 @@ public class shootingScript : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        audioSrc = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         //layermask |= Physics.IgnoreRaycastLayer;
@@ -39,6 +42,8 @@ public class shootingScript : MonoBehaviour
             Ray mouseRay = GetComponentInChildren<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;
             anim.SetTrigger("Fire");
+            audioSrc.clip = shootclip;
+            audioSrc.Play();
             GetComponentInChildren<ParticleSystem>().Play();
 
             //Send the raycast and if the raycast hit something, print out the name to console

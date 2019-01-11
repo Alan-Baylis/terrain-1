@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     public int scoreValue = 10;
 
     CapsuleCollider CapsuleCollider;
-    bool IsDead;
+    public bool IsDead;
     bool IsSinking;
     public bool destroyOnDeath;
 

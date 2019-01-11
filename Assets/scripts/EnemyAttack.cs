@@ -18,13 +18,12 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] float attackDelay = 1.0f;
 
     [SerializeField] int damageDealt = 5;
-    EnemyHealth playerHealth;
 
     void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player" && Time.time >= nextTimeAttackIsAllowed)
         {
-            EnemyHealth playerHealth = other.GetComponent<EnemyHealth>();
+            HealthScript playerHealth = other.GetComponent<HealthScript>();
             anim.SetTrigger("Attack");
             playerHealth.Damage(damageDealt);
 

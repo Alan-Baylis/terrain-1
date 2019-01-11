@@ -51,7 +51,6 @@ public class shootingScript : MonoBehaviour
                 print(hitInfo.transform);
                 EnemyHealth enemyHealth = hitInfo.transform.GetComponent<EnemyHealth>(); 
                 Debug.DrawLine(transform.position, hitInfo.point, Color.red, 5.0f);
-                EnemyHealth EnemyHealth = hitInfo.transform.GetComponent<EnemyHealth>();
 
                 if (enemyHealth != null)
                 {

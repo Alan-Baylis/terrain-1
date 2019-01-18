@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyNavMovement : MonoBehaviour
 {
 
@@ -11,14 +12,20 @@ public class EnemyNavMovement : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        var playerGo = GameObject.FindGameObjectWithTag("Player");
+        target = playerGo.transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        agent = GetComponent<NavMeshAgent>();
+        if(target == null)
+        {
+            return;
+        }
+
+        // agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.position);
         if (agent.remainingDistance < (agent.stoppingDistance + 0.5f))
         {

@@ -1,14 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class PlayerMovement : MonoBehaviour {
 
     CharacterController charController;
 
+    PlayerIndex playerIndex;
+    GamePadState state;
+    GamePadState prevState;
+    bool playerIndexSet = false;
+
     [SerializeField] float jumpSpeed = 20.0f;
     [SerializeField] float gravity = 1.0f;
     float yVelocity = 0.0f;
+    public int playerNum;
 
     [SerializeField] float moveSpeed = 5.0f;
     public float h;
@@ -23,8 +30,27 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        h = Input.GetAxis("Horizontal");
-        v = Input.GetAxis("Vertical");
+
+        GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
+        state = GamePad.GetState(playerIndex);
+
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndex = testPlayerIndex;
+                    playerIndexSet = true;
+                }
+            }
+        }
+
+        h = state.ThumbSticks.Left.X;
+        v = state.ThumbSticks.Left.Y;
         anim.SetFloat("Speed", v);
         anim.SetFloat("Direction", h);
 
@@ -33,7 +59,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (charController.isGrounded)
         {
-            if (Input.GetButtonDown("Jump"))
+            if (state.Buttons.Y == ButtonState.Pressed)
             {
                 anim.SetTrigger("Jump");
                 yVelocity = jumpSpeed;

@@ -6354,6 +6354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: goblin (Enemy)
       objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 8cb13e5c39da128458a8bb5f3ddb797f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 8cb13e5c39da128458a8bb5f3ddb797f, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -7699,6 +7703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e92a2adbb703964e9dade9b74fb9c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thingToSpawn: {fileID: 1577820737}
+  delayBetweenSpawns: 2
+  timeOfNextSpawn: 1
 --- !u!4 &1837002666
 Transform:
   m_ObjectHideFlags: 0
@@ -8338,6 +8345,7 @@ GameObject:
   - component: {fileID: 1994015244}
   - component: {fileID: 1994015243}
   - component: {fileID: 1994015251}
+  - component: {fileID: 1994015252}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -8453,6 +8461,7 @@ MonoBehaviour:
     bar: {fileID: 894665568}
     maxVal: 150
     currentVal: 150
+  renderer: {fileID: 0}
 --- !u!143 &1994015249
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8588,6 +8597,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1994015252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994015242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f2dd7df113279a43bb58bdf05c6be1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSpeed: 20
+  gravity: 1
+  moveSpeed: 5
+  playerNum: 1
 --- !u!1 &2010987282
 GameObject:
   m_ObjectHideFlags: 0

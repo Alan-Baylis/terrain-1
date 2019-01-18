@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,12 +18,12 @@ public class SpawnScript : MonoBehaviour
             Instantiate(thingToSpawn, transform.position, Quaternion.identity);
             timeOfNextSpawn = Time.time + delayBetweenSpawns;
             amountSpawned++;
-
-            static public void EnemyDie()
-            {
-                amountSpawned--;
-            }
         }
+    }
+
+    static public void EnemyDie()
+    {
+        amountSpawned--;
     }
 }
 

@@ -16,11 +16,13 @@ public class HealthScript : MonoBehaviour
     private Stat energy;
 
     Animator anim;
+    public new Renderer renderer;
 
     void Start()
     {
         currentHealth = maximumHealth;
         anim = GetComponent<Animator>();
+        renderer = GetComponentInChildren<Renderer>();
     }
 
     private void Awake()
@@ -47,13 +49,18 @@ public class HealthScript : MonoBehaviour
         anim.SetTrigger("Flinch");
 
         if (currentHealth <= 0)
-        {
+            if (gameObject.tag != "Player")
+            {
+                SpawnScript.EnemyDie();
+            }
             Destroy(this.gameObject);
-        }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (IsDead && !renderer.isVisible)
+        {
+            Destroy(gameObject);
+        }
     }
 }

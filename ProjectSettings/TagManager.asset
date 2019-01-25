@@ -8,6 +8,7 @@ TagManager:
   - trigger
   - Door
   - GameManager
+  - Cat
   layers:
   - Default
   - TransparentFX

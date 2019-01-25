@@ -61,6 +61,7 @@ public class HealthScript : MonoBehaviour
         if (IsDead && !renderer.isVisible)
         {
             Destroy(gameObject);
+            GameManager.amountKilled++;
         }
     }
 }

@@ -26,6 +26,11 @@ public class GameManager : MonoBehaviour
         {
             won = true;
         }
+        if (amountKilled > 15)
+        {
+            EventManager.TriggerEvent("zombiesKilled");
+        }
+        else if (amountKilled > 30)
 
         if (GameManager.won == true)
         {

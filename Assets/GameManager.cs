@@ -17,14 +17,21 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         winPanel.SetActive(false);
+        amountKilled = 0;
         losePanel.SetActive(false);
     }
 
     void Update()
     {
-        if (Time.timeSinceLevelLoad > 5)
+        if (Time.timeSinceLevelLoad > 180)
         {
             won = true;
+        }
+
+        if (won == true)
+        {
+            Time.timeScale = 0;
+            winPanel.SetActive(true);
         }
         if (amountKilled > 15)
         {

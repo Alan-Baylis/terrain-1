@@ -7,10 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 
     CharacterController charController;
 
-    PlayerIndex playerIndex;
-    GamePadState state;
-    GamePadState prevState;
-    bool playerIndexSet = false;
+    PlayerControl playerControl;
 
     [SerializeField] float jumpSpeed = 20.0f;
     [SerializeField] float gravity = 1.0f;
@@ -26,31 +23,14 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
         charController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-	}
+        playerControl = GetComponent<PlayerControl>();
+    }
 	
 	// Update is called once per frame
-	void Update () {
-
-        GamePad.SetVibration(playerIndex, state.Triggers.Left, state.Triggers.Right);
-        state = GamePad.GetState(playerIndex);
-
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-
-        h = state.ThumbSticks.Left.X;
-        v = state.ThumbSticks.Left.Y;
+	void Update ()
+    {
+        h = playerControl.state.ThumbSticks.Left.X;
+        v = playerControl.state.ThumbSticks.Left.Y;
         anim.SetFloat("Speed", v);
         anim.SetFloat("Direction", h);
 
@@ -59,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
 
         if (charController.isGrounded)
         {
-            if (state.Buttons.Y == ButtonState.Pressed)
+            if (playerControl.state.Buttons.Y == ButtonState.Pressed)
             {
                 anim.SetTrigger("Jump");
                 yVelocity = jumpSpeed;
@@ -74,5 +54,6 @@ public class PlayerMovement : MonoBehaviour {
         velocity = transform.TransformDirection(velocity);
 
         charController.Move(velocity * Time.deltaTime);
-	}
+
+    }
 }

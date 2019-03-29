@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class shootingScript : MonoBehaviour
 {
     [SerializeField] GameObject bloodHit;
     AudioSource audioSrc;
     [SerializeField] AudioClip shootclip;
+    PlayerControl playerControl;
 
     [SerializeField]
     int damageDealt = 20;
@@ -22,6 +24,7 @@ public class shootingScript : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerControl = GetComponent<PlayerControl>();
         //layermask |= Physics.IgnoreRaycastLayer;
         layermask = ~layermask;
     }
@@ -34,7 +37,7 @@ public class shootingScript : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") || playerControl.state.Triggers.Right == 1)
         {
             //Make a raycast with the line starting from center of camera
             Cursor.lockState = CursorLockMode.Locked;

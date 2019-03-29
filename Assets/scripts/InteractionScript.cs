@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class InteractionScript : MonoBehaviour {
+
+    PlayerControl playerControl;
 
     [SerializeField]
     private Animator anim;
@@ -15,6 +18,7 @@ public class InteractionScript : MonoBehaviour {
 
     private void Start()
     {
+        playerControl = GetComponent<PlayerControl>();
         open = false;
     }
 
@@ -22,7 +26,7 @@ public class InteractionScript : MonoBehaviour {
     void Update ()
     {
         anim.SetBool("Open", open);
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || playerControl.state.Buttons.X == ButtonState.Pressed)
         {
             Ray mouseRay = GetComponentInChildren<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hitInfo;

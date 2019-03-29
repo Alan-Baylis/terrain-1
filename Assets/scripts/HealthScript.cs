@@ -7,7 +7,7 @@ public class HealthScript : MonoBehaviour
 {
 
     [SerializeField] int maximumHealth = 100;
-    public int currentHealth = 0;
+    public int currentHealth = 100;
 
     [SerializeField]
     private Stat health;

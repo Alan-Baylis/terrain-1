@@ -6,8 +6,8 @@ public class EnemyHealth : MonoBehaviour
 {
     Animator anim;
 
-    [SerializeField] int maximumHealth = 100;
-    int currentHealth = 0;
+    [SerializeField] int maximumHealth = 20;
+    int currentHealth = 20;
 
     public float sinkSpeed = 2.5f;
     public int scoreValue = 10;

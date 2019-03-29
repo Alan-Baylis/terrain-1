@@ -14,12 +14,12 @@ public class AchivementScript : MonoBehaviour
 
     void OnEnable()
     {
-        EventManager.StartListening("zombiesKilled", revelDeathBadge);
+        EventManager.StartListening("GoblinsKilled", revelDeathBadge);
     }
 
     void OnDisable()
     {
-        EventManager.StopListening("zombiesKilled", revelDeathBadge);
+        EventManager.StopListening("GoblinsKilled", revelDeathBadge);
     }
 
     void revelDeathBadge()

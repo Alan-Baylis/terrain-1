@@ -9,25 +9,22 @@ public class LookY : MonoBehaviour {
     public float minimumY = -30F;
     public float maximumY = 30F;
     [SerializeField]float rotationY = 0F;
-
-    PlayerIndex playerIndex;
-    GamePadState state;
+    PlayerControl playerControl;
 
     void Start ()
     {
-        
+        playerControl = GetComponentInParent<PlayerControl>();
     }
 
 	// Update is called once per frame
 	void Update ()
     {
-        state = GamePad.GetState(playerIndex);
         if (rotationY >= 0.1)
         {
             Debug.Log("CameraMoves");
         }
-        print(state.ThumbSticks.Right.Y);
-        rotationY += state.ThumbSticks.Right.Y * sensitivityY;
+        print(playerControl.state.ThumbSticks.Right.Y);
+        rotationY += playerControl.state.ThumbSticks.Right.Y * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
         transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);

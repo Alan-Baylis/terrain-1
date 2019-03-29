@@ -23,7 +23,7 @@ public class LookY : MonoBehaviour {
         {
             Debug.Log("CameraMoves");
         }
-        print(playerControl.state.ThumbSticks.Right.Y);
+        //print(playerControl.state.ThumbSticks.Right.Y);
         rotationY += playerControl.state.ThumbSticks.Right.Y * sensitivityY;
         rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 

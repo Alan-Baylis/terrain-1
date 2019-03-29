@@ -8,7 +8,7 @@ public class SpawnScript : MonoBehaviour
     [SerializeField] GameObject thingToSpawn;
     [SerializeField] float delayBetweenSpawns = 2.0f;
     [SerializeField] float timeOfNextSpawn = 1f;
-    int amountToSpawn = 10;
+    int amountToSpawn = 100;
     static int amountSpawned = 1;
 
     void Update()

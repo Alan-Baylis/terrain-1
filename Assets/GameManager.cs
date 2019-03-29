@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeSinceLevelLoad > 180)
+        if (Time.timeSinceLevelLoad > 100)
         {
             won = true;
         }

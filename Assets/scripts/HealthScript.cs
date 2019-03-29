@@ -49,11 +49,13 @@ public class HealthScript : MonoBehaviour
         anim.SetTrigger("Flinch");
 
         if (currentHealth <= 0)
+        {
             if (gameObject.tag != "Player")
             {
                 SpawnScript.EnemyDie();
             }
             Destroy(this.gameObject);
+        }
     }
 
     void Update()

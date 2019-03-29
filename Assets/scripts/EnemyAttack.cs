@@ -23,6 +23,8 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.tag == "Player" && Time.time >= nextTimeAttackIsAllowed)
         {
+
+            print(damageDealt);
             HealthScript playerHealth = other.GetComponent<HealthScript>();
             anim.SetTrigger("Attack");
             playerHealth.Damage(damageDealt);

@@ -54,7 +54,14 @@ public class HealthScript : MonoBehaviour
             {
                 SpawnScript.EnemyDie();
             }
-            Destroy(this.gameObject);
+            if (gameObject.tag == "Player")
+            {
+
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 

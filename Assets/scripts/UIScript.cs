@@ -23,14 +23,17 @@ public class UIScript : MonoBehaviour
         healthTxt = manager.playerHealthTxt;
         scoreNum = manager.score;
         timeNum = manager.timeTxt;
+        losePanel.SetActive(false);
 
         healthBar.MaxValue = healthScript.getMaxHealth();
         healthBar.Value = healthScript.getHealth();
         healthTxt.text = "Health: " + healthScript.getHealth();
+        StartCoroutine("UpdateUI");
     }
 
     IEnumerator UpdateUI()
     {
+        Debug.Log("Player dead: " + healthScript.IsDead);
         healthBar.Value = healthScript.getHealth();
         healthTxt.text = "Health: " + healthScript.getHealth();
         timeNum.text = "" + (int)Time.time;
@@ -56,11 +59,6 @@ public class UIScript : MonoBehaviour
         healthTxt.text = "Health: " + healthScript.getHealth();
         timeNum.text = "" + (int)Time.time;
         scoreNum.text = score + "";
-
-        if (healthScript.IsDead)
-        {
-            losePanel.SetActive(true);
-            Time.timeScale = 0;
-        }
+    
     }
 }

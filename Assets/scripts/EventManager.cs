@@ -47,7 +47,7 @@ public class EventManager : MonoBehaviour
             thisEvent += listener;
 
             //Update the Dictionary
-            instance.eventDictionary[eventName] = thisEvent);
+            instance.eventDictionary[eventName] = thisEvent;
         }
         else
         {
